@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\OrderDetail;
+use App\Models\Order;
 
 class HistoryController extends Controller
 {

@@ -13,7 +13,23 @@ class AdminController extends Controller
     public function users()
     {
         $users = User::get();
+
         return view('admin.user.home', ['no' => 1], compact('users'));
+    }
+
+    public function status(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required',
+        ]);
+
+        $user = User::find($id);
+        $name = $user->name;
+        $user->status = $request->status;
+        $user->update();
+
+        Alert::success('Status Berubah', 'Status' . $name . 'Behasil Diubah');
+        return redirect('user');
     }
 
     public function delete_user($id)
@@ -32,7 +48,7 @@ class AdminController extends Controller
 
     public function items()
     {
-        $items = Item::get();
+        $items = Item::all();
         return view('admin.item.home', ['no' => 1], compact('items'));
     }
 
